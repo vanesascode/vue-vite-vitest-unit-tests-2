@@ -2,19 +2,25 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## ⭐️ Vitest test coverage
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Add the script to the package.json file:
 
-## Type Support for `.vue` Imports in TS
+```
+   "coverage": "vitest run --coverage",
+```
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+And install:
 
-## Customize configuration
+`@vitest/coverage-v8`
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Run the command: `npm run coverage`
 
-## Project Setup
+![Screenshot 2024-06-25 at 16 26 28](https://github.com/vanesascode/fortune-teller-chat-frontend-vue/assets/131259155/e307827e-b32a-4787-b0c8-69de500eb228)
+
+Test coverage is a measure of how much of your code is executed by your tests. It helps you identify areas of your code that are not being tested, which can lead to bugs or regressions.
+
+## ⭐️ Project Setup
 
 ```sh
 npm install
@@ -43,3 +49,11 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## ⭐️ PASTE JSON AS CODE extension:
+
+- copy the json from which you want to get your interfaces.
+
+- `Ctrl + shift + p` in vscode.
+
+- select Paste Json as Code and write the name of the main interface in the input. Enter. You have it.
