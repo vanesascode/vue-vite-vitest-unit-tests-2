@@ -1,4 +1,6 @@
 import './assets/styles.css';
+import './assets/animations.css';
+
 // Vuetify
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
