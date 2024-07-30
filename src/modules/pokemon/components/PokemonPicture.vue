@@ -1,19 +1,39 @@
 <template>
   <section>
     <img
-      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg"
+      v-if="!showPokemon"
+      :src="pokemonImage"
       alt="pokemon image"
-      class="pokemon-image"
+      class="pokemon pokemon__dark mt-5"
     />
+    <img v-else :src="pokemonImage" alt="pokemon image" class="pokemon fade-in" />
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue';
+
+interface PokemonPictureProps {
+  pokemonId: number;
+  showPokemon?: boolean;
+}
+
+const props = withDefaults(defineProps<PokemonPictureProps>(), {
+  showPokemon: false,
+});
+
+const pokemonImage = computed(() => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`;
+});
+</script>
 
 <style scoped>
-.pokemon-image {
+.pokemon {
   width: 200px;
   height: 200px;
+}
+
+.pokemon__dark {
   filter: brightness(0);
 
   /* so user cannot drag image:  */
