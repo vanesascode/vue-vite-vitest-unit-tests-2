@@ -1,12 +1,14 @@
 import { computed, onMounted, ref } from 'vue';
 import { GameStatus, type Pokemon, type PokemonListResponse } from '../interfaces';
 import { pokemonApi } from '../api/pokemonApi';
-import PokemonOptions from '../components/PokemonOptions.vue';
+import confetti from 'canvas-confetti';
+import { useLevelStore } from '@/stores/useLevelStore';
 
 export const usePokemonGame = () => {
   const gameStatus = ref<GameStatus>(GameStatus.playing);
   const pokemons = ref<Pokemon[]>([]);
   const pokemonOptions = ref<Pokemon[]>([]);
+  const levelStore = useLevelStore();
 
   //it is computed to create a reactive property that automatically updates its value based on the state of other reactive properties—in this case, pokemons:
   const isLoading = computed(() => pokemons.value.length === 0);
@@ -14,6 +16,7 @@ export const usePokemonGame = () => {
     const randomIndex = Math.floor(Math.random() * pokemonOptions.value.length);
     return pokemonOptions.value[randomIndex];
   });
+  const level = computed(() => levelStore.level);
 
   const getPokemons = async (): Promise<Pokemon[]> => {
     const response = await pokemonApi.get<PokemonListResponse>('?limit=151');
@@ -31,7 +34,7 @@ export const usePokemonGame = () => {
     return pokemonsArray.sort(() => Math.random() - 0.5);
   };
 
-  const getNextOptions = (howMany: number = 4) => {
+  const getNextRound = (howMany: number = level.value) => {
     gameStatus.value = GameStatus.playing;
     // The ones we are showing:
     pokemonOptions.value = pokemons.value.slice(0, howMany);
@@ -39,12 +42,24 @@ export const usePokemonGame = () => {
     pokemons.value = pokemons.value.slice(howMany);
   };
 
-  onMounted(async () => {
-    // await new Promise((resolve) => setTimeout(resolve, 1500));
-    pokemons.value = await getPokemons();
-    getNextOptions();
+  const checkAnswer = (id: number) => {
+    const hasWon = randomPokemon.value.id === id;
 
-    console.log(pokemonOptions.value);
+    if (hasWon) {
+      gameStatus.value = GameStatus.won;
+      confetti({
+        particleCount: 300,
+        spread: 160,
+        origin: { y: 0.6 },
+      });
+      return;
+    }
+    gameStatus.value = GameStatus.lost;
+  };
+
+  onMounted(async () => {
+    pokemons.value = await getPokemons();
+    getNextRound();
   });
 
   return {
@@ -53,6 +68,7 @@ export const usePokemonGame = () => {
     pokemonOptions,
     randomPokemon,
 
-    getNextOptions,
+    getNextRound,
+    checkAnswer,
   };
 };
