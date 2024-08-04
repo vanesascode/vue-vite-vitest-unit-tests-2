@@ -4,7 +4,7 @@
       v-if="!showPokemon"
       :src="pokemonImage"
       alt="pokemon image"
-      class="pokemon pokemon__dark mt-5"
+      class="pokemon pokemon__dark mt-2"
     />
     <img v-else :src="pokemonImage" alt="pokemon image" class="pokemon fade-in" />
   </section>
