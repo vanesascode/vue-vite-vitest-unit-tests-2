@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <h3 class="text-center">Escoge nivel:</h3>
-    <div class="d-flex flex-column justify-center ga-3 mt-2">
-      <v-btn style="min-width: 10.5rem; background-color: white" variant="outlined"
-        >Has jugado {{ timesPlayed }} {{ timesPlayed === 1 ? 'vez' : 'veces' }}.
-      </v-btn>
-      <v-btn style="min-width: 10.5rem; background-color: white" variant="outlined"
-        >Has ganado {{ wins }} {{ wins === 1 ? 'vez' : 'veces' }}.
-      </v-btn>
-      <v-btn style="min-width: 10.5rem; background-color: white" variant="outlined"
-        >Has perdido {{ loses }} {{ loses === 1 ? 'vez' : 'veces' }}.
-      </v-btn>
+  <div class="d-flex flex-column justify-center align-center">
+    <h3 class="text-center">Tu puntuación:</h3>
+
+    <div class="text-capitalize button mt-2 w-100 text-center partidas-color">
+      Partidas: {{ timesPlayed }}
+    </div>
+    <div class="d-flex justify-center ga-3 mt-2">
+      <div class="text-capitalize button">
+        Has ganado {{ wins }} {{ wins === 1 ? 'vez' : 'veces' }}
+      </div>
+      <div class="text-capitalize button">
+        Has perdido {{ loses }} {{ loses === 1 ? 'vez' : 'veces' }}
+      </div>
     </div>
   </div>
 </template>
@@ -25,4 +26,17 @@ interface PointsBoxProps {
 defineProps<PointsBoxProps>();
 </script>
 
-<style scoped></style>
+<style scoped>
+.partidas-color {
+  background-color: rgb(83, 165, 83) !important;
+}
+
+.button {
+  min-width: 5rem;
+  background-color: rgb(120, 118, 118);
+  font-size: 0.7rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  color: white;
+}
+</style>
