@@ -45,12 +45,12 @@ const handleOptionClick = (id: number) => {
 
 <style scoped>
 .correct {
-  background-color: green;
-  color: white;
+  background-color: rgb(4, 170, 4) !important;
+  color: rgb(250, 240, 240);
 }
 
 .incorrect {
-  background-color: rgb(174, 86, 86);
+  background-color: rgb(48, 43, 43);
   color: white;
 }
 </style>
