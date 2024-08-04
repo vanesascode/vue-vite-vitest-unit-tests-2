@@ -6,7 +6,7 @@
 
   <section v-else class="d-flex justify-center align-center flex-column">
     <h1 v-if="gameStatus === GameStatus.playing">¿Quién es este pokémon?</h1>
-    <div style="height: 3rem" v-else>
+    <div v-else>
       <h1 v-if="gameStatus === GameStatus.won" class="text-capitalize">
         ¡Correcto! ¡Es {{ randomPokemon.name }}!
       </h1>
@@ -14,16 +14,6 @@
       <h1 v-else-if="gameStatus === GameStatus.lost" class="text-capitalize">
         Perdiste... Es {{ randomPokemon.name }}
       </h1>
-    </div>
-
-    <div style="height: 3rem">
-      <v-btn
-        v-if="gameStatus !== GameStatus.playing"
-        @click="getNextRound()"
-        class="text-capitalize w-100"
-        style="min-width: 10.5rem"
-        >Juega otra vez
-      </v-btn>
     </div>
 
     <PokemonPicture
@@ -37,9 +27,19 @@
       :block-options="gameStatus !== GameStatus.playing"
       :correct-answer="randomPokemon.id"
     />
-    <div class="d-flex justify-center align-start ga-10 flex-wrap mt-10 mb-3 px-4">
-      <PointsBox :wins="wins" :loses="loses" :times-played="timesPlayed" />
+
+    <div class="mt-5">
+      <v-btn
+        v-if="gameStatus !== GameStatus.playing"
+        @click="getNextRound()"
+        class="text-capitalize w-100"
+        style="min-width: 10.5rem"
+        >Juega otra vez
+      </v-btn>
+    </div>
+    <div class="d-flex justify-center align-start ga-6 flex-wrap mt-8 mb-3 px-4">
       <GameLevels @options-number="changeLevel" />
+      <PointsBox :wins="wins" :loses="loses" :times-played="timesPlayed" />
     </div>
   </section>
 </template>
