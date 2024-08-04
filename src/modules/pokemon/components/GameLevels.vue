@@ -1,12 +1,14 @@
 <template>
   <div>
     <h3 class="text-center">Escoge nivel:</h3>
-    <div class="d-flex flex-column justify-center ga-3 mt-2">
+    <div class="d-flex justify-center ga-3 mt-2">
       <v-btn
+        color="black"
+        size="small"
         v-for="(level, index) in levels"
         @click="$emit('optionsNumber', optionsNumber[index])"
         :key="level"
-        style="min-width: 10.5rem; background-color: darkgrey; color: white"
+        style="min-width: 5rem; color: white"
         >{{ level }}
       </v-btn>
     </div>
