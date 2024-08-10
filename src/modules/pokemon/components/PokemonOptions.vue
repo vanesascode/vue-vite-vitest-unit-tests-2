@@ -1,6 +1,7 @@
 <template>
   <section class="d-flex flex-column ga-3 mt-3">
     <v-btn
+      data-test-id="pokemon-option"
       v-for="{ name, id } in options"
       :key="id"
       size="large"
