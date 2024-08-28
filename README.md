@@ -1,6 +1,12 @@
 # pokemon-game
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a simple game to guess the name of the pokemon you see. It is tested with VITEST.
+
+## For mocking axios calls
+
+`npm install axios-mock-adapter --save-dev`
+
+https://www.npmjs.com/package/axios-mock-adapter
 
 ## ⭐️ Vitest test coverage
 
