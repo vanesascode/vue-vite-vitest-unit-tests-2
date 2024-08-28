@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { usePokemonGame } from '@/modules/pokemon/composables/usePokemonGame';
 import { createPinia, setActivePinia } from 'pinia';
 import { withSetup } from '../../../utils/with-setup';
@@ -38,7 +39,7 @@ describe('usePokemonGame', () => {
     });
   });
 
-  test('should correctly handle getNextRound', async () => {
+  it('should correctly handle getNextRound', async () => {
     const [results] = withSetup(usePokemonGame);
     await flushPromises();
 
@@ -50,7 +51,7 @@ describe('usePokemonGame', () => {
     expect(results.pokemonOptions.value).toHaveLength(3);
   });
 
-  test('should correctly handle getNextRound and return different pokemons', async () => {
+  it('should correctly handle getNextRound and return different pokemons', async () => {
     const [results] = withSetup(usePokemonGame);
     await flushPromises();
 
